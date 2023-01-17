@@ -1,0 +1,113 @@
+.cardBorder {
+  margin: 14px;
+  cursor: pointer;
+  position: relative;
+  width: 328px;
+  max-width: 100%;
+  height: 488px;
+  background-color: #2ea8e6;
+  border-radius: 14px;
+  clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%, 0 10%);
+  @media (max-width: 480px) {
+    width: 262px;
+  }
+}
+
+.disabled {
+  background-color: #b3b3b3;
+  color: #b3b3b3;
+}
+.card {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 320px;
+  max-width: 100%;
+  height: 480px;
+  background-color: #f2f2f2;
+  border-radius: 11px;
+  clip-path: polygon(14.7% 0, 100% 0, 100% 100%, 0 100%, 0 9.7%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &Content {
+    padding: 20px 0 0 53px;
+    position: relative;
+  }
+  @media (max-width: 480px) {
+    width: 254px;
+    object-fit: cover;
+  }
+}
+
+.aboveTitle {
+  font-weight: 400;
+  font-size: 16px;
+  color: #666666;
+  padding: 0 0 5px 0;
+}
+
+.title {
+  font-size: 48px;
+  line-height: 56px;
+  @media (max-width: 480px) {
+    font-size: 39px;
+    line-height: 45px;
+  }
+}
+
+.ingredient {
+  font-size: 24px;
+  line-height: 28px;
+  padding-bottom: 8px;
+}
+
+.portions {
+  font-size: 14px;
+  line-height: 16px;
+  color: #666666;
+}
+
+.prize {
+  font-size: 14px;
+  line-height: 16px;
+  color: #666666;
+}
+.kilo {
+  position: absolute;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  color: white;
+  background-color: #1698d9;
+  bottom: -300px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-right: 10px;
+  & div {
+    font-size: 42px;
+  }
+  & span {
+    font-size: 21px;
+  }
+}
+
+.cat {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 0 0 0 10px;
+  @media (max-width: 480px) {
+    width: 80%;
+    object-fit: cover;
+  }
+}
+
+.disabledText {
+  color: #b3b3b3;
+}
