@@ -7,6 +7,7 @@ const App = () => {
   const [data] = useState(dataCard);
   return (
     <div className="App">
+      <h1 className="App__title">Ты сегодня покормил кота?</h1>
       <div className="cards">
         {data.map((el) => (
           <CardItem
