@@ -1,7 +1,7 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import classes from "./CardItem.module.scss";
 import cat from "../../images/Cat.png";
-import disabledCat from "../../images/disabledCat.png";
+
 const CardItem = ({ card }) => {
   const [color, setColor] = useState("rgb(22, 152, 217)");
 
@@ -15,19 +15,31 @@ const CardItem = ({ card }) => {
     );
   };
   const title = useRef(null);
-
+  const bg = useRef(null);
   const hover = (e) => {
-    e.target.style.opacity = 0.95;
-    if (e.target.style.backgroundColor === "rgb(217, 22, 103)") {
-      e.target.style.backgroundColor = "rgb(229, 46, 122)";
+    e.preventDefault();
+    if (card.disabled) return false;
+
+    bg.current.style.opacity = 0.8;
+    if (color === "rgb(217, 22, 103)") {
+      bg.current.style.backgroundColor = "#E52E7A";
       title.current.innerText = "Котэ не одобряет?";
+    }
+    if (color === "rgb(22, 152, 217)") {
+      bg.current.style.backgroundColor = "rgb(46, 168, 230)";
     }
   };
   const unHover = (e) => {
-    e.target.style.opacity = 1;
-    if (e.target.style.backgroundColor === "rgb(229, 46, 122)") {
-      e.target.style.backgroundColor = "rgb(217, 22, 103)";
+    e.preventDefault();
+    if (card.disabled) return false;
+
+    bg.current.style.opacity = 1;
+    if (color === "rgb(217, 22, 103)") {
+      bg.current.style.backgroundColor = "rgb(217, 22, 103)";
       title.current.innerText = "Сказочное заморское яство";
+    }
+    if (color === "rgb(46, 168, 230)") {
+      bg.current.style.backgroundColor = "rgb(22, 152, 217)";
     }
   };
 
@@ -52,16 +64,21 @@ const CardItem = ({ card }) => {
       }}>
       <div
         onClick={activeCard}
-        onMouseEnter={hover}
-        onMouseLeave={unHover}
+        ref={bg}
         style={{ backgroundColor: !card.disabled && color }}
         className={
           card.disabled
             ? [classes.cardBorder, classes.disabled].join(" ")
             : classes.cardBorder
         }>
-        <div className={classes.card}>
-          <div className={classes.cardContent}>
+        <div
+          className={classes.card}
+          onMouseEnter={hover}
+          onMouseLeave={unHover}>
+          <div
+            className={classes.cardContent}
+            onMouseEnter={(event) => event.preventDefault()}
+            onMouseLeave={(event) => event.preventDefault()}>
             <div
               ref={title}
               className={
@@ -103,22 +120,23 @@ const CardItem = ({ card }) => {
           </div>
           <img
             className={classes.cat}
-            src={card.disabled ? disabledCat : cat}
+            src={cat}
             alt="cat"
           />
         </div>
       </div>
-      {color === "rgb(22, 152, 217)" && !card.disabled && (
-        <span style={{ color: "white" }}>
-          Чего сидишь? Порадуй котэ,{" "}
-          <span
-            style={{ color: "rgb(22, 152, 217)", cursor: "pointer" }}
-            onClick={activeCard}>
-            купи
+      {color === ("rgb(22, 152, 217)" || "rgb(46, 168, 230)") &&
+        !card.disabled && (
+          <span style={{ color: "white" }}>
+            Чего сидишь? Порадуй котэ,{" "}
+            <span
+              style={{ color: "rgb(22, 152, 217)", cursor: "pointer" }}
+              onClick={activeCard}>
+              купи
+            </span>
+            .
           </span>
-          .
-        </span>
-      )}
+        )}
       {color === "rgb(217, 22, 103)" && !card.disabled && (
         <span style={{ color: "white" }}>{card.text}</span>
       )}

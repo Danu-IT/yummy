@@ -27,12 +27,21 @@ $base-color: #000000;
 }
 
 .App {
-  // width: 1200px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #ffffff;
+  text-shadow: 0px 1px 1px #000000;
+  &__title {
+    margin-bottom: 20px;
+  }
 }
 
 .cards {
   display: flex;
+  color: #000000;
+  text-shadow: none;
   @media (max-width: 1200px) {
     display: grid;
     grid-template-columns: 1fr 1fr;
